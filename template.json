@@ -5,16 +5,16 @@
       "override": {
         "virtualbox-iso": {
           "scripts": [
-            "scripts/base.sh",
-            "scripts/vagrant.sh",
-            "scripts/virtualbox.sh",
-            "scripts/cleanup.sh"
+            "install_scriptsbase.sh",
+            "install_scriptsvagrant.sh",
+            "install_scriptsvirtualbox.sh",
+            "install_scriptscleanup.sh"
           ]
         },
         "amazon-ebs": {
           "scripts": [
-            "scripts/base.sh",
-            "scripts/vagrant.sh"
+            "install_scriptsbase.sh",
+            "install_scriptsvagrant.sh"
           ]
         }
       }
