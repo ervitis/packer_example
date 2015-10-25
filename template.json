@@ -13,8 +13,8 @@
         },
         "amazon-ebs": {
           "scripts": [
-            "install_scriptsbase.sh",
-            "install_scriptsvagrant.sh"
+            "install_scripts/base.sh",
+            "install_scripts/vagrant.sh"
           ]
         }
       }
