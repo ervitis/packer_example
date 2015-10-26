@@ -1,1 +1,12 @@
 ---
+
+# Install apache
+
+- name: Install apache
+  yum: name={{ item }} state=present
+  with_items:
+    - apache_packages
+    - php
+
+- name: Enable apache service
+  service: name=apache state=started enabled=yes
