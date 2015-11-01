@@ -2,11 +2,14 @@
 
 # Install apache
 
-- name: Install apache
+- name: Install httpd
   yum: name={{ item }} state=present
   with_items:
-    - apache_packages
+    - httpd
+    - httpd-devel
+    - mod_ssl
+    - openssh
     - php
 
-- name: Enable apache service
-  service: name=apache state=started enabled=yes
+- name: Enable httpd service
+  service: name=httpd state=started enabled=yes

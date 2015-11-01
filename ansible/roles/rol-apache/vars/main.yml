@@ -4,12 +4,6 @@ apache_daemon_path: /usr/sbin/
 apache_server_root: /etc/httpd
 apache_conf_path: /etc/httpd/conf.d
 
-__apache_packages:
-  - httpd
-  - httpd-devel
-  - mod_ssl
-  - openssh
-
 apache_ports_configuration_items:
   - {
     regexp: "^Listen ",
