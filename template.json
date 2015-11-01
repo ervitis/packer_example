@@ -2,6 +2,7 @@
   "provisioners": [
     {
       "type": "shell",
+      "execute_command": "echo 'vagrant'|sudo -S sh '{{ .Path }}'",
       "override": {
         "virtualbox-iso": {
           "scripts": [
@@ -21,12 +22,10 @@
     },
     {
       "type": "ansible-local",
-      "playbook_dir": "ansible",
-      "playbook_file": "local.yml",
-      "group_vars": "ansible/vars",
+      "playbook_file": "./ansible/local.yml",
+      "group_vars": "./ansible/vars",
       "role_paths": [
-        "ansible/roles/rol-docker",
-        "ansible/roles/rol-apache"
+        "./ansible/roles"
       ]
     }
   ],
@@ -56,10 +55,10 @@
     {
       "type": "virtualbox-iso",
       "boot_command": [
-        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<enter><wait>"
+        "<tab>text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<enter><wait>"
       ],
-      "boot_wait": "3s",
-      "disk_size": 16000,
+      "boot_wait": "7s",
+      "disk_size": 8000,
       "guest_os_type": "RedHat_64",
       "iso_url": "http://mirror.softaculous.com/centos/7/isos/x86_64/CentOS-7-x86_64-DVD-1503-01.iso",
       "iso_checksum": "1795184136b8bdddabe50453cc2cc2d46f0f7c5e",
@@ -67,32 +66,49 @@
       "ssh_username": "vagrant",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "20000s",
+      "ssh_wait_timeout": "10000s",
       "guest_additions_path": "VBoxGuestAdditions_{{ .Version }}.iso",
       "virtualbox_version_file": ".vbox_version",
       "vboxmanage": [
-        ["modifyvm", "{{ .Name }}", "--memory", "256"],
-        ["modifyvm", "{{ .Name }}", "--cpus", "2"]
+        ["modifyvm", "{{ .Name }}", "--memory", "1024"],
+        ["modifyvm", "{{ .Name }}", "--cpus", "1"]
       ],
       "ssh_pty": true,
-      "headless": true
+      "headless": false,
+      "shutdown_command": "echo '/sbin/halt -h -p' > /tmp/shutdown.sh; echo 'vagrant'|sudo -S sh '/tmp/shutdown.sh'"
     },
     {
       "type": "amazon-ebs",
       "access_key": "{{ user `aws_access_key` }}",
       "secret_key": "{{ user `aws_secret_key` }}",
       "ami_name": "centos-ami-build-{{ timestamp }}",
+      "ami_description": "prueba packer",
       "region": "{{ user `aws_region` }}",
       "instance_type": "{{ user `aws_instance_type` }}",
       "ssh_username": "centos",
-      "security_group_id": "sg-xxxxxx",
-      "subnet_id": "subnet-xxxx",
+      "security_group_id": "{{ user `aws_security_group_id` }}",
+      "subnet_id": "{{ user `aws_subnet_id` }}",
       "tags": {
         "Name": "AMI virtual machine"
       },
-      "vpc_id": "vpc-xxxxx",
+      "vpc_id": "{{ user `aws_vpc_id` }}",
       "source_ami": "{{ user `aws_source_ami` }}",
-      "ssh_pty": true
+      "ssh_pty": true,
+      "ami_block_device_mappings": [
+        {
+          "device_name": "/dev/sda1",
+          "volume_size": "8",
+          "delete_on_termination": true
+        }
+      ],
+      "launch_block_device_mappings": [
+        {
+          "device_name": "/dev/sda1",
+          "volume_size": "8",
+          "delete_on_termination": true
+        }
+      ],
+      "force_deregister": true
     }
   ]
 }
