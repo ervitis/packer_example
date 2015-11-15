@@ -101,13 +101,13 @@ local.properties
 # sftp configuration file
 sftp-config.json
 ### JDeveloper template
-# default application storage directory used by the IDE Performance Cache feature
+# defaults application storage directory used by the IDE Performance Cache feature
 .data/
 
 # used for ADF styles caching
 temp/
 
-# default output directories
+# defaults output directories
 classes/
 deploy/
 javadoc/
@@ -296,3 +296,4 @@ nb-configuration.xml
 
 packer_cache
 *.box
+output-virtualbox-iso

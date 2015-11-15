@@ -5,3 +5,4 @@ yum -y install gcc make gcc-c++ kernel-devel-`uname -r` perl git python python-d
 
 easy_install pip
 pip install -U ansible
+pip install -U virtualenv

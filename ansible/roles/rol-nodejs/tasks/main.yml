@@ -1,0 +1,17 @@
+---
+
+- name: Add nodejs repositories
+  yum:
+    name: "https://rpm.nodesource.com/pub/el/{{ ansible_distribution_major_version }}/{{ ansible_architecture }}/nodesource-release-el{{ ansible_distribution_major_version }}-1.noarch.rpm"
+    state: present
+
+- name: Ensure nodejs and npm are installed
+  yum: "name=nodejs state=present enablerepo='epel, nodesource'"
+
+- name: Install additional packages
+  npm:
+    name: "{{ item.name }}"
+    version: "{{ item.version|defaults('') }}"
+    global: yes
+    state: latest
+  with_items: nodejs_npm_global_packages

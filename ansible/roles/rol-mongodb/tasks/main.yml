@@ -1,0 +1,35 @@
+---
+
+- name: Include variables
+  include_vars: "mongodb_vars.yml"
+
+- name: Install Python-SELinux
+  yum:
+    pkg=libselinux-python
+    state=latest
+
+- name: Disable selinux
+  selinux: state=disabled
+
+- name: add mongo-10gen repo file
+  template: src=repo.j2 dest=/etc/yum.repos.d/mongo-10gen.repo
+  tags: mongodb
+
+- name: create /data/db folder
+  file: path=/data/db state=directory mode=0755
+
+- name: install mongodb
+  yum: name="{{ item }}" state=present
+  with_items:
+    - mongo-10gen-server
+    - mongodb-org-tools
+    - mongodb-org-shell
+  tags: mongodb
+
+- name: configure mongodb
+  template: src=mongod.conf.j2 dest=/etc/mongod.conf
+  tags: mongodb
+
+- name: run mongodb
+  service: name=mongod state=started enabled=yes
+  tags: mongodb

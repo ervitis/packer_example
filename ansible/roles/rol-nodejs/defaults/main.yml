@@ -1,0 +1,5 @@
+---
+
+nodejs_version: "5.0.0"
+
+nodejs_npm_global_packages: []

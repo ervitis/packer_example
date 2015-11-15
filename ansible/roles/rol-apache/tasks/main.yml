@@ -9,7 +9,8 @@
     - httpd-devel
     - mod_ssl
     - openssh
-    - php
 
 - name: Enable httpd service
   service: name=httpd state=started enabled=yes
+
+- include: configure.yml

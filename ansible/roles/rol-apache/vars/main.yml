@@ -14,4 +14,4 @@ apache_ports_configuration_items:
     line: "NameVirtualHost *:{{ apache_listen_port }}"
   }
 
-apache_default_vhost_filename: 000-default.conf
+apache_default_vhost_filename: 000-defaults.conf
