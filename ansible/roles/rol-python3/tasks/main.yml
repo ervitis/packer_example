@@ -1,0 +1,26 @@
+---
+
+- name: Get Python from url
+  get_url: url=https://www.python.org/ftp/python/{{ python_version }}/Python-{{ python_version }}.tgz dest={{ directory_src }}
+
+- name: Unzip the tarball
+  command: tar xf Python-{{ python_version }}.tgz chdir={{ directory_src }}
+
+- name: Python configure
+  shell: >
+    ./configure
+    --prefix={{ directory_prefix }}
+    --enable-shared &&
+    make &&
+    make install
+    chdir={{ directory_src }}Python-{{ python_version }}
+
+- name: Python link
+  file: src={{ directory_prefix }}bin/python3 dest={{ directory_prefix }}bin/python state=link
+
+- name: ld.so.conf library
+  lineinfile: dest=/etc/ld.so.conf line={{ directory_prefix }}lib
+  notify: reload ldconfig
+
+- name: Python in bashrc PATH
+  lineinfile: dest=/etc/bashrc line="PATH={{ directory_prefix }}bin:$PATH" insertbefore="^export PATH"

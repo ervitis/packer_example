@@ -10,3 +10,5 @@
   - { role: roles/rol-apache }
   - { role: roles/rol-mysql }
   - { role: roles/rol-php }
+  - { role: roles/rol-docker }
+  - { role: roles/rol-python3 }

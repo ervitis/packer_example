@@ -1,0 +1,11 @@
+---
+
+python_main_version: 3
+python_minor_changes: 5
+python_bug_fix_changes: 0
+
+python_version: "{{ python_main_version }}.{{ python_minor_changes }}.{{ python_bug_fix_changes }}"
+
+directory_prefix: "/usr/local/python3/"
+directory_src: "/usr/local/src/"
+directory_bin: "/usr/local/bin/"

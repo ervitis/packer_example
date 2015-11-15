@@ -1,0 +1,7 @@
+---
+
+- name: Install Docker
+  yum: pkg=docker-io state=present
+
+- name: Start service
+  service: name=docker state=started

@@ -56,7 +56,7 @@
       "boot_command": [
         "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<enter><wait>"
       ],
-      "boot_wait": "15s",
+      "boot_wait": "3s",
       "disk_size": 8000,
       "guest_os_type": "RedHat_64",
       "iso_url": "http://mirror.softaculous.com/centos/7/isos/x86_64/CentOS-7-x86_64-DVD-1503-01.iso",
