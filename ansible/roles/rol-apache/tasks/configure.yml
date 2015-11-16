@@ -13,7 +13,7 @@
 
 - name: Add Apache vhosts
   template:
-    src: "../templates/apache.conf.j2"
+    src: "../files/apache.conf.j2"
     dest: "{{ apache_conf_path }}/{{ apache_vhosts_filename }}"
     owner: root
     group: root

@@ -4,6 +4,7 @@
   gather_facts: true
 
   roles:
+  - { role: roles/rol-bash }
   - { role: roles/rol-epel }
   - { role: roles/rol-nodejs }
   - { role: roles/rol-mongodb }
@@ -12,3 +13,4 @@
   - { role: roles/rol-php }
   - { role: roles/rol-docker }
   - { role: roles/rol-python3 }
+  - { role: roles/rol-java }

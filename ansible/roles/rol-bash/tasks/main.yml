@@ -1,0 +1,4 @@
+---
+
+- name: Copy bashrc
+  copy: src=../files/bashrc dest=/etc/bashrc

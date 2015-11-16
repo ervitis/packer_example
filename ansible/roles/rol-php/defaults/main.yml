@@ -87,3 +87,4 @@ php_source_configure_command: >
   --with-bz2=/usr
   --with-recode=/usr
   --with-mysqli=/usr/bin/mysql_config
+  --with-intl
