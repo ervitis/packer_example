@@ -1,4 +1,7 @@
 ---
 
-- name: Copy bashrc
-  copy: src=../files/bashrc dest=/etc/bashrc
+- name: Copy bashrc user
+  copy: src=../files/user/bashrc dest=/etc/bashrc
+
+- name: Copy bashrc root
+  copy: src=../files/root/bashrc dest=/root/.bashrc
