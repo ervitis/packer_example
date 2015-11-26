@@ -1,0 +1,19 @@
+---
+
+- name: Install bower
+  shell: npm install -g bower
+
+- name: Install grunt and grunt-cli
+  shell: npm install -g grunt-cli grunt grunt-contrib-jshint
+
+- name: Install yeoman
+  shell: npm install -g yo
+
+- name: Install angular generator
+  shell: npm install -g generator-angular
+
+- name: Install Jasmine
+  shell: npm install -g karma-jasmine
+
+- name: Install testing tools for nodejs
+  shell: npm install -g istanbul mocha

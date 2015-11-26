@@ -14,3 +14,4 @@
   - { role: roles/rol-docker }
   - { role: roles/rol-python3 }
   - { role: roles/rol-java }
+  - { role: roles/rol-nodejs-utilities }
