@@ -1,17 +1,18 @@
 ---
 
-- name: Add nodejs repositories
-  yum:
-    name: "https://rpm.nodesource.com/pub/el/{{ ansible_distribution_major_version }}/{{ ansible_architecture }}/nodesource-release-el{{ ansible_distribution_major_version }}-1.noarch.rpm"
-    state: present
+- name: Create folder in /opt
+  file: path={{ nodejs_folder }} state=directory
 
-- name: Ensure nodejs and npm are installed
-  yum: "name=nodejs state=present enablerepo='epel, nodesource'"
+- name: Download nodejs
+  get_url: url={{ nodejs_url_download }} dest={{ nodejs_folder }}
 
-- name: Install additional packages
-  npm:
-    name: "{{ item.name }}"
-    version: "{{ item.version|defaults('') }}"
-    global: yes
-    state: latest
-  with_items: nodejs_npm_global_packages
+- name: Unzip the tarball
+  command: tar xf {{ nodejs_tar_gz_file }} chdir={{ nodejs_folder }}
+
+- name: Set nodejs PATH
+  lineinfile: dest=/etc/bashrc line="PATH={{ nodejs_folder }}{{nodejs_file_name}}/bin:$PATH" insertbefore="^export PATH"
+
+- name: Reload bashrc
+  shell: source /etc/bashrc
+  args:
+    executable: /bin/bash

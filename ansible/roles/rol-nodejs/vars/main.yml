@@ -1,0 +1,16 @@
+---
+
+nodejs_main_version: 5
+nodejs_sub_version: 5
+nodejs_bug_fix_version: 0
+
+nodejs_version: "{{ nodejs_main_version }}.{{ nodejs_sub_version }}.{{ nodejs_bug_fix_version }}"
+
+nodejs_tar_gz_file: "node-v{{ nodejs_version }}-linux-x64.tar.gz"
+nodejs_file_name: "node-v{{ nodejs_version }}-linux-x64"
+
+nodejs_url_download: "https://nodejs.org/dist/v{{ nodejs_version }}/{{ nodejs_tar_gz_file }}"
+
+nodejs_folder: "/usr/bin/nodejs/"
+
+nodejs_npm_global_packages: []

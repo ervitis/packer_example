@@ -1,0 +1,8 @@
+---
+
+- name: Install Libvirt library
+  yum: name={{ item }} state=present
+  with_items: libvirt_packages
+
+- name: Libvirtd daemon
+  service: name=libvirtd state=started

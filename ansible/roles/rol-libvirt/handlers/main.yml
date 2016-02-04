@@ -1,0 +1,4 @@
+---
+
+- name: reload ldconfig
+  command: ldconfig
