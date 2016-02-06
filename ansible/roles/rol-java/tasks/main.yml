@@ -32,4 +32,7 @@
   register: oracle_java_task_set_default
 
 - name: Set JAVA_HOME
-  lineinfile: dest=/etc/bashrc line="PATH={{ oracle_java_home }}:$PATH" insertbefore="^export PATH"
+  lineinfile: dest=/home/vagrant/.bashrc line="JAVA_HOME={{ oracle_java_home }}" insertafter=EOF
+
+- name: Enable JAVA_HOME
+  lineinfile: dest=/home/vagrant/.bashrc line="PATH=$JAVA_HOME:$PATH" insertafter=EOF

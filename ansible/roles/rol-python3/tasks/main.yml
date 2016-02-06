@@ -23,4 +23,4 @@
   notify: reload ldconfig
 
 - name: Python in bashrc PATH
-  lineinfile: dest=/etc/bashrc line="PATH={{ directory_prefix }}bin:$PATH" insertbefore="^export PATH"
+  lineinfile: dest=/home/vagrant/.bashrc line="PATH={{ directory_prefix }}bin:$PATH" insertbefore="^export PATH"

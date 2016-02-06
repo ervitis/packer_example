@@ -10,9 +10,9 @@
   command: tar xf {{ nodejs_tar_gz_file }} chdir={{ nodejs_folder }}
 
 - name: Set nodejs PATH
-  lineinfile: dest=/etc/bashrc line="PATH={{ nodejs_folder }}{{nodejs_file_name}}/bin:$PATH" insertbefore="^export PATH"
+  lineinfile: dest=/home/vagrant/.bashrc line="PATH={{ nodejs_folder }}{{nodejs_file_name}}/bin:$PATH" insertbefore="^export PATH"
 
 - name: Reload bashrc
-  shell: source /etc/bashrc
+  shell: source /home/vagrant/.bashrc
   args:
     executable: /bin/bash

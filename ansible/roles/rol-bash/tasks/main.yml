@@ -1,7 +1,7 @@
 ---
 
 - name: Copy bashrc user
-  copy: src=../files/user/bashrc dest=/etc/bashrc
+  copy: src=../files/user/bashrc dest=/home/vagrant/.bashrc
 
 - name: Copy bashrc root
   copy: src=../files/root/bashrc dest=/root/.bashrc

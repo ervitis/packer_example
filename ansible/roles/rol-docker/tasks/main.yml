@@ -2,6 +2,13 @@
 
 - name: Install Docker
   yum: pkg=docker-io state=present
+  notify: restart docker
+
+- name: Add docker group
+  shell: groupadd docker
+
+- name: Add the user in the new docker group
+  shell: gpasswd -a vagrant docker
 
 - name: Start service
-  service: name=docker state=started
+  service: name=docker state=started enabled=yes

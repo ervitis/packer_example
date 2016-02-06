@@ -29,6 +29,8 @@ libvirt_packages:
   - libvirt
   - libvirt-python
   - qemu-kvm
-  - python-virtinst
   - virt-manager
   - libguestfs-tools
+  - libvirt-client
+  - libvirt-daemon-kvm
+  - libvirt-daemon

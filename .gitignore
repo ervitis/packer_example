@@ -297,3 +297,5 @@ nb-configuration.xml
 packer_cache
 *.box
 output-virtualbox-iso
+
+.bundle

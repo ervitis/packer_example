@@ -16,3 +16,4 @@
   - { role: roles/rol-java }
   - { role: roles/rol-epel }
   - { role: roles/rol-libvirt }
+  - { role: roles/rol-finalsetup }
