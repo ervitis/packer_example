@@ -1,6 +1,6 @@
 ---
 - hosts: localhost
-  sudo: yes
+  become: yes
   gather_facts: true
 
   roles:
@@ -16,4 +16,5 @@
   - { role: roles/rol-java }
   - { role: roles/rol-epel }
   - { role: roles/rol-libvirt }
+  - { role: roles/rol-openvswitch }
   - { role: roles/rol-finalsetup }

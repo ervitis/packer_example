@@ -1,0 +1,27 @@
+---
+
+- hosts: default
+  become: yes
+  gather_facts: true
+
+  tasks:
+  - name: Create conf.db
+    command: ovsdb-tool create /usr/etc/openvswitch/conf.db
+
+  - name: Create directory
+    file: path=/var/run/openvswitch state=directory
+
+  - name: Start openvswitch server
+    command: >
+      ovsdb-server
+      --remote=punix:/var/run/openvswitch/db.sock
+      --remote=db:Open_vSwitch,Open_vSwitch,manager_options
+      --pidfile
+      --detach
+      --log-file
+
+  - name: ovs-vsctl init no-wait flag
+    command: ovs-vsctl --no-wait init
+
+  - name: ovs-vswitchd detach with pidfile flag
+    command: ovs-vswitchd --pidfile --detach

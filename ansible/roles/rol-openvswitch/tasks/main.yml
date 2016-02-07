@@ -1,0 +1,32 @@
+---
+
+- name: Create the tmp folder
+  file: path={{ ovs_folder }} state=directory
+
+- name: Downloading openvswitch
+  get_url: url={{ ovs_url }} dest={{ ovs_folder }}
+
+- name: Install dependencies
+  yum: name={{ item }} state=present
+  with_items: ovs_dependencies
+
+- name: Unzip the package
+  command: tar xf {{ ovs_tar_package_file }} chdir={{ ovs_folder }}
+
+- name: Bootstrapping the sources
+  shell: ./boot.sh chdir={{ ovs_folder_after_unzip }}
+
+- name: Configuring sources
+  shell: ./configure --prefix=/usr --localstatedir=/var --with-linux=/lib/modules/`uname -r`/build chdir={{ ovs_folder_after_unzip }}
+
+- name: Installing
+  shell: >
+    make &&
+    make install
+    chdir={{ ovs_folder_after_unzip }}
+
+- name: Modules installing
+  shell: make modules_install chdir={{ ovs_folder_after_unzip }}
+
+- name: Create folder for conf.db
+  file: path=/usr/etc/openvswitch state=directory

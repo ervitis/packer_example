@@ -1,0 +1,21 @@
+---
+
+ovs_main_version: 2
+ovs_sub_version: 4
+ovs_fix_bug_version: 0
+
+ovs_version: "{{ ovs_main_version }}.{{ ovs_sub_version }}.{{ ovs_fix_bug_version }}"
+ovs_tar_package_file: "openvswitch-{{ ovs_version }}.tar.gz"
+
+ovs_url: "http://openvswitch.org/releases/{{ ovs_tar_package_file }}"
+
+ovs_folder: /tmp/openvswitch
+ovs_folder_after_unzip_name: "openvswitch-{{ ovs_version }}"
+ovs_folder_after_unzip: "{{ ovs_folder }}/{{ ovs_folder_after_unzip_name }}"
+
+ovs_dependencies:
+ - autoconf
+ - automake
+ - libtool
+ - openssl
+ - openssl-libs
