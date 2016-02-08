@@ -27,6 +27,3 @@
 
 - name: Modules installing
   shell: make modules_install chdir={{ ovs_folder_after_unzip }}
-
-- name: Create folder for conf.db
-  file: path=/usr/etc/openvswitch state=directory

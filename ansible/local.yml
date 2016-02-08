@@ -4,17 +4,17 @@
   gather_facts: true
 
   roles:
-  - { role: roles/rol-bash }
-  - { role: roles/rol-epel }
-  - { role: roles/rol-nodejs }
-  - { role: roles/rol-mongodb }
-  - { role: roles/rol-apache }
-  - { role: roles/rol-mysql }
-  - { role: roles/rol-php }
-  - { role: roles/rol-docker }
-  - { role: roles/rol-python3 }
-  - { role: roles/rol-java }
-  - { role: roles/rol-epel }
-  - { role: roles/rol-libvirt }
+  #- { role: roles/rol-bash }
+  #- { role: roles/rol-epel }
+  #- { role: roles/rol-nodejs }
+  #- { role: roles/rol-mongodb }
+  #- { role: roles/rol-apache }
+  #- { role: roles/rol-mysql }
+  #- { role: roles/rol-php }
+  #- { role: roles/rol-docker }
+  #- { role: roles/rol-python3 }
+  #- { role: roles/rol-java }
+  #- { role: roles/rol-epel }
+  #- { role: roles/rol-libvirt }
   - { role: roles/rol-openvswitch }
-  - { role: roles/rol-finalsetup }
+  #- { role: roles/rol-finalsetup }

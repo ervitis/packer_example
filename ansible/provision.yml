@@ -5,8 +5,12 @@
   gather_facts: true
 
   tasks:
+  - name: Create folder for conf.db
+    file: path=/usr/etc/openvswitch state=directory
+
   - name: Create conf.db
     command: ovsdb-tool create /usr/etc/openvswitch/conf.db
+    ignore_errors: true
 
   - name: Create directory
     file: path=/var/run/openvswitch state=directory
