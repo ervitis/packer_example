@@ -17,7 +17,7 @@
   shell: ./boot.sh chdir={{ ovs_folder_after_unzip }}
 
 - name: Configuring sources
-  shell: ./configure --prefix=/usr --localstatedir=/var --with-linux=/lib/modules/`uname -r`/build chdir={{ ovs_folder_after_unzip }}
+  shell: ./configure --prefix=/usr --localstatedir=/var --enable-shared CC=gcc chdir={{ ovs_folder_after_unzip }}
 
 - name: Installing
   shell: >
