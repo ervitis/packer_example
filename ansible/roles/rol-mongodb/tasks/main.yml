@@ -3,11 +3,6 @@
 - name: Include variables
   include_vars: "mongodb_vars.yml"
 
-- name: Install Python-SELinux
-  yum:
-    pkg=libselinux-python
-    state=latest
-
 - name: Disable selinux
   selinux: state=disabled
 
@@ -19,11 +14,7 @@
   file: path=/data/db state=directory mode=0755
 
 - name: install mongodb
-  yum: name="{{ item }}" state=present
-  with_items:
-    - mongo-10gen-server
-    - mongodb-org-tools
-    - mongodb-org-shell
+  yum: name=mongodb-org state=present
   tags: mongodb
 
 - name: configure mongodb
