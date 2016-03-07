@@ -26,7 +26,7 @@ Paquetes que se instalan (roles):
 
 ### 3. Arrancar la máquina virtual
 
-> vagrant up --provision
+> vagrant up
 
 ### 4. Acceso a la máquina
 
