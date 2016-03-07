@@ -1,29 +1,41 @@
 ---
 
-- name: Create the tmp folder
+- name: Create tmp folder
   file: path={{ ovs_folder }} state=directory
+
+- name: Create the folder for rpmbuild
+  file: path={{ ovs_rpm_builder_folder }} state=directory
 
 - name: Downloading openvswitch
   get_url: url={{ ovs_url }} dest={{ ovs_folder }}
 
 - name: Install dependencies
   yum: name={{ item }} state=present
-  with_items: ovs_dependencies
+  with_items: "{{ ovs_dependencies }}"
+
+- name: Copy tar file into rpmbuild/sources folder
+  copy: src={{ ovs_folder }}/{{ ovs_tar_package_file }} dest={{ ovs_rpm_builder_folder_sources }}
 
 - name: Unzip the package
-  command: tar xf {{ ovs_tar_package_file }} chdir={{ ovs_folder }}
+  command: tar xfz {{ ovs_tar_package_file }} chdir={{ ovs_folder }}
 
-- name: Bootstrapping the sources
-  shell: ./boot.sh chdir={{ ovs_folder_after_unzip }}
+- name: sed the ko file
+  replace:
+    dest: "{{ ovs_folder }}/{{ ovs_folder_after_unzip_name }}/rhel/openvswitch.spec"
+    regexp: "openvswitch-kmod"
+    replace: ""
 
-- name: Configuring sources
-  shell: ./configure --prefix=/usr --localstatedir=/var --enable-shared CC=gcc chdir={{ ovs_folder_after_unzip }}
+- name: Build the rpm file
+  shell: rpmbuild -bb --nocheck {{ ovs_folder_after_unzip_name }}/rhel/openvswitch.spec chdir="{{ ovs_folder }}"
 
-- name: Installing
-  shell: >
-    make &&
-    make install
-    chdir={{ ovs_folder_after_unzip }}
+- name: Create the configuration directory
+  file: path=/etc/openvswitch/ state=directory
 
-- name: Modules installing
-  shell: make modules_install chdir={{ ovs_folder_after_unzip }}
+- name: Install the rpm package
+  yum: name=/root/rpmbuild/RPMS/x86_64/{{ ovs_folder_after_unzip_name }}-1.x86_64.rpm
+
+- name: Start service
+  command: systemctl start openvswitch.service chdir={{ ovs_folder_after_unzip }}
+
+- name: Start service on boot
+  command: chkconfig openvswitch on chdir={{ ovs_folder_after_unzip }}

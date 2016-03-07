@@ -18,9 +18,4 @@ Vagrant.configure(2) do |config|
     v.customize ["modifyvm", :id, "--nictype2", "virtio"]
   end
 
-  config.vm.provision :ansible do |ansible|
-    ansible.host_key_checking = false
-    ansible.playbook = "./ansible/provision.yml"
-  end
-
 end
