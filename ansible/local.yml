@@ -17,4 +17,5 @@
   - { role: roles/rol-epel }
   - { role: roles/rol-libvirt }
   - { role: roles/rol-openvswitch }
+  - { role: roles/rol-scala }
   - { role: roles/rol-finalsetup }

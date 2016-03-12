@@ -1,12 +1,13 @@
 ---
 
 jdk_main_version: 8
-jdk_subversion: 65
+jdk_subversion: 73
 jdk_version: "{{ jdk_main_version }}u{{ jdk_subversion }}"
 jdk_tar_file: "jdk-{{ jdk_version }}-linux-x64.tar.gz"
 jdk_file: "jdk1.{{ jdk_main_version }}.0_{{ jdk_subversion }}"
+jdk_b_version: b02
 
-jdk_download_url: "http://download.oracle.com/otn-pub/java/jdk/{{ jdk_version }}-b17/{{ jdk_file }}"
+jdk_download_url: "http://download.oracle.com/otn-pub/java/jdk/{{ jdk_version }}-{{ jdk_b_version }}/{{ jdk_file }}"
 
 jdk_clean_download: true
 jdk_download_path: /tmp
