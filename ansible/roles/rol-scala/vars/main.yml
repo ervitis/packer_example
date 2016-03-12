@@ -1,0 +1,14 @@
+---
+
+scala_main_version: 2
+scala_sub_version: 11
+scala_bug_fix_version: 8
+
+scala_version: "{{ scala_main_version }}.{{ scala_sub_version }}.{{ scala_bug_fix_version }}"
+scala_folder_name: "scala-{{scala_version}}"
+scala_file_tar_gz_name: "{{ scala_folder_name }}.tgz"
+
+scala_url: "http://downloads.lightbend.com/scala/{{ scala_version }}/{{ scala_file_tar_gz_name }}"
+
+scala_tmp_folder_name: /tmp/scala/
+scala_folder: /opt

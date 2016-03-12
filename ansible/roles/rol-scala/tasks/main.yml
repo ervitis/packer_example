@@ -1,0 +1,19 @@
+---
+
+- name: Create tmp for scala
+  file: path={{ scala_tmp_folder_name }} state=directory
+
+- name: Download scala
+  get_url: url={{ scala_url }} dest={{ scala_tmp_folder_name }}
+
+- name: Untar file
+  command: tar xfz {{ scala_file_tar_gz_name }} chdir={{ scala_tmp_folder_name }}
+
+- name: Copy to opt folder
+  copy: src={{ scala_tmp_folder_name }}/{{ scala_folder_name }} dest={{ scala_folder }} owner=vagrant group=vagrant
+
+- name: Change file attributes in bin folder
+  command: find {{ scala_folder }}/{{ scala_folder_name }}/bin -type f -exec chmod 0744 {} \;
+
+- name: Set PATH with scala
+  lineinfile: dest=/home/vagrant/.bashrc line="PATH={{ scala_folder }}/{{ scala_folder_name }}/bin:$PATH" insertbefore="^export PATH"
