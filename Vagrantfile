@@ -1,4 +1,4 @@
-# -*- mode: ruby -*-
+#-*- mode: ruby -*-
 # vi: set ft=ruby :
 
 Vagrant.configure(2) do |config|
@@ -12,7 +12,7 @@ Vagrant.configure(2) do |config|
 
   config.vm.provider :virtualbox do |v|
     v.cpus = 2
-    v.memory = 1024
+    v.memory = 4096
     v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
     v.customize ["modifyvm", :id, "--nictype1", "virtio"]
     v.customize ["modifyvm", :id, "--nictype2", "virtio"]
